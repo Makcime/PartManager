@@ -11,4 +11,19 @@ package beanPackage;
  */
 public class user {
     
+    private String name, first_name, login, passwd;
+
+    public user() {};
+    
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    
+    
 }

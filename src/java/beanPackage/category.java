@@ -11,4 +11,15 @@ package beanPackage;
  */
 public class category {
     
+    private String name;
+
+    public category() {};
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
