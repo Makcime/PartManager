@@ -10,13 +10,18 @@
     This file is an entry point for JavaServer Faces application.
 --%>
 <f:view>
-    <html>
+    <html xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
             <title>JSP Page</title>
         </head>
         <body>
             <h1><h:outputText value="JavaServer Faces"/></h1>
+            <h:form>
+                <h:commandButton value="Valider" action="login"  /><br>
+            </h:form>
+
+            
         </body>
     </html>
 </f:view>
