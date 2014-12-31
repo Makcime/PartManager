@@ -45,7 +45,7 @@ CREATE TABLE User(
 
 CREATE TABLE Project(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	user_id INT DEFAULT 0,
+	user_id INT DEFAULT 0, -- default user is John Doe (admin)
 	name VARCHAR(50) UNIQUE,
 	description TEXT,
 	CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES User(id)
