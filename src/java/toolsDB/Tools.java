@@ -5,7 +5,9 @@
  */
 package toolsDB;
 
+import beanPackage.user;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -15,23 +17,56 @@ import java.sql.Statement;
  * @author max
  */
 public class Tools {
-    
-    public static boolean verifyLogin( Connection con, String login, 
-                                       String passwd){
+
+    public static boolean verifyLogin( Connection con, String login, String passwd){
         Statement stmt=null;
+        System.out.println("In fct verifyLOGIN...");
         try {
             stmt = con.createStatement();
             login="'"+login+"'";
             passwd="'"+passwd+"'";
-            ResultSet rs=stmt.executeQuery("Select * "
-                     + "from User where login="+login
-                     +" and passwd="+passwd);
+            ResultSet rs=stmt.executeQuery("SELECT * "
+                     + "FROM User WHERE login="+login
+                     +" AND passwd="+passwd);
             boolean ok=rs.next();
             System.out.println(ok);
-            if(ok)  return true;
+            return ok;
+            // if(ok)  return true;
 
         } catch (SQLException ex) {ex.printStackTrace(); }
 
-      return false;
+       return false;
     }
+
+    public static user findUser(Connection con, String login){
+        user u=new user();
+        try {
+        ResultSet rs= selectFromWhere(con, "*", "User", "login=\""+login+"\"");
+        rs.next();
+        u.setLogin(login);
+        u.setId(rs.getInt("id"));
+        u.setName(rs.getString("name"));
+        u.setFirst_name(rs.getString("first_name"));
+        u.setCp(rs.getString("cp"));
+          } catch (SQLException ex) {
+                     System.out.println(ex);
+
+        }
+        return u;
+    }
+
+    public static ResultSet selectFromWhere(Connection con, String column, String table, String condition){
+        PreparedStatement prep;
+        ResultSet rs = null;
+        try {
+        System.out.println(condition);
+        prep = con.prepareStatement("Select " + column + " from " + table + " where " + condition);
+        rs=prep.executeQuery();
+          } catch (SQLException ex) {
+                     System.out.println(ex);
+        }
+        return rs;
+    }
+
+
 }
