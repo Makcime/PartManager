@@ -11,7 +11,8 @@ package beanPackage;
  */
 public class user {
     
-    private String name, first_name, login, passwd;
+    private String name, first_name, login, passwd ,cp;
+    Integer id;
 
     public String getFirst_name() {
         return first_name;
@@ -38,6 +39,22 @@ public class user {
     }
 
     public user() {};
+
+    public String getCp() {
+        return cp;
+    }
+
+    public void setCp(String cp) {
+        this.cp = cp;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
     
 
     public String getName() {
