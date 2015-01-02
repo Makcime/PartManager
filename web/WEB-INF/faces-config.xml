@@ -13,10 +13,21 @@
             <from-outcome>test</from-outcome>
             <to-view-id>/welcomeJSF.jsp</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>db</from-outcome>
+            <to-view-id>/testToolsDB.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/login.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>succes</from-outcome>
+            <to-view-id>/signIn.jsp</to-view-id>
+        </navigation-case>
     </navigation-rule>
     <managed-bean>
-        <managed-bean-name>userMB</managed-bean-name>
-        <managed-bean-class>beanPackage.userMB</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-name>test</managed-bean-name>
+        <managed-bean-class>beanPackage.testToolsDB</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
 </faces-config>
