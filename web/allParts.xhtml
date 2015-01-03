@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>All parts</title>
+            </f:facet>
+        </h:head>
+    <body>
+        
+    <h:form>		
+		<p:panel id="panel" header="All components">
+
+                    <p:dataTable var="part" value="#{allParts.parts}">
+			    <p:column headerText="Id">
+			        <h:outputText value="#{part.id}" />
+			    </p:column>
+			 
+			    <p:column headerText="Name">
+			        <h:outputText value="#{part.name}" />
+			    </p:column>
+			 
+			    <p:column headerText="Value">
+			        <h:outputText value="#{part.value}" />
+			    </p:column>
+			 
+			    <p:column headerText="Category">
+			        <h:outputText value="#{part.category}" />
+			    </p:column>
+			 
+			    <p:column headerText="Suplier">
+			        <h:outputText value="#{part.supplier}" />
+			    </p:column>		
+
+			    <p:column headerText="Suplier reference">
+			        <h:outputText value="#{part.sup_ref}" />
+			    </p:column>
+
+			    <p:column headerText="Nb in stock">
+			        <h:outputText value="#{part.inStock}" />
+			    </p:column>
+			 
+			    <p:column headerText="Unit price">
+                                <h:outputText value="#{part.unit_price}" />
+			    </p:column>
+			</p:dataTable>
+	    </p:panel>
+
+    </h:form>
+
+    </body>
+</html>
