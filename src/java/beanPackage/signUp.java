@@ -19,6 +19,8 @@ public class signUp {
     public signUp() {
     }
 
+    public void save(){}
+
     public String getName() {
         return name;
     }
