@@ -18,6 +18,10 @@
             <from-outcome>signup</from-outcome>
             <to-view-id>/signUp.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>allParts</from-outcome>
+            <to-view-id>/allParts.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
     <managed-bean>
         <managed-bean-name>signUp</managed-bean-name>
@@ -28,5 +32,15 @@
         <managed-bean-name>login</managed-bean-name>
         <managed-bean-class>beanPackage.login</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>allParts</managed-bean-name>
+        <managed-bean-class>beanPackage.allParts</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>part</managed-bean-name>
+        <managed-bean-class>beanPackage.part</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
 </faces-config>
