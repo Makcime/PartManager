@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>New project</title>
+            </f:facet>
+        </h:head>
+    <body>
+        <h:form>
+        <p:growl autoUpdate="true"/>
+		<p:panel id="panel" header="New project">
+ 
+        <p:focus context="panel"/>
+ 
+        <h:panelGrid columns="1">
+
+            <p:outputLabel for="name" value="Name" />
+            <p:inputText id="name" value="#{newProject.name}" required="true">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+
+            <p:outputLabel value="Description" />
+            <!-- <p:outputLabel for="descrption" value="Description" /> -->
+            <p:inputTextarea id="descrption" rows="5" cols="30" counter="display" maxlength="150" counterTemplate="{0} characters remaining." autoResize="false" />
+           
+            <p:outputLabel for="display" value="" />
+		    <h:outputText id="display" />
+
+ 
+        	<p:commandButton id="submitButton" value="Save" update="@parent" actionListener="#{newProject.save}" />
+
+        </h:panelGrid>
+		</p:panel>
+           
+        </h:form>
+    </body>
+</html>

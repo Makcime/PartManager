@@ -22,6 +22,10 @@
             <from-outcome>allParts</from-outcome>
             <to-view-id>/allParts.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>newProject</from-outcome>
+            <to-view-id>/newProject.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
     <managed-bean>
         <managed-bean-name>signUp</managed-bean-name>
