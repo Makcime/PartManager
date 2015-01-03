@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -84,6 +86,20 @@ public class Tools {
         }
         return name;
     }
+
+    public static List<String> listNames(Connection con, String table){
+        List<String> l = new ArrayList<String>();
+        try {
+            ResultSet rs= selectAll(con, table);
+            while(rs.next()){
+                l.add(rs.getString("name"));
+
+            }
+          } catch (SQLException ex) {
+                     System.out.println(ex);
+        }
+        return l;
+    }
     
     public static String findSup(Connection con, Integer id){
         String name = null;
@@ -148,7 +164,8 @@ public class Tools {
         query = "Update Part SET";
         query+= " name='" + p.getName() +"'";
         query+= ", value='" + p.getValue() +"'";
-//        query+= ", sup_ref='" + p.getSup_ref()+"'";
+        if(p.getSup_ref() != p.getNew_sup_ref())
+            query+= ", sup_ref='" + p.getNew_sup_ref()+"'";
         query+= ", cat_id=" + findId(con, "Category", p.getCategory());
         query+= ", sup_id=" + findId(con, "Supplier", p.getSupplier());
         query+= " where id="+ p.getId().toString();
