@@ -4,13 +4,44 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>All parts</title>
+            </f:facet>
+        </h:head>
     <body>
-        <div>TODO write content</div>
+        
+    <h:form>			
+        <p:button outcome="edit" value="Edit" icon="ui-icon-pencil">
+        </p:button>
+		<p:panel id="panel" header="Project for user :">
+
+                    <p:dataTable var="project" value="#{projects.parts}" resizableColumns="true"
+                                 lazy="true" rowsPerPageTemplate="10,15,50,100">
+                
+                <p:column headerText="Id" width="10">
+			        <h:outputText value="#{project.id}" />
+			    </p:column>
+			 
+			    <p:column headerText="Name" width="50">
+			        <h:outputText value="#{project.name}" style="float:right"/>
+			    </p:column>
+			 
+			    <p:column headerText="Description">
+			        <h:outputText value="#{project.description}" style="float:right"/>
+			    </p:column>
+			 
+
+			</p:dataTable>
+	    </p:panel>
+
+    </h:form>
+
     </body>
 </html>
