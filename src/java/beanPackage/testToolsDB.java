@@ -22,10 +22,10 @@ import toolsDB.Tools;
 @ManagedBean
 @RequestScoped
 public class testToolsDB {
+    @Resource(name = "coin")
+    private DataSource coin;
+
     
-    
-    @Resource(name = "Ds")
-    private DataSource Ds;
     
     private user u;
     private String login;
@@ -41,10 +41,9 @@ public class testToolsDB {
     	Connection con;
         String name = "fail"  ;
        try {
-           con = Ds.getConnection();
+           con = coin.getConnection();
             u = Tools.findUser(con, "admin");
             name = u.getName();
-            System.out.println("Salope !");
             System.out.println(u.getFirst_name());
        } catch (SQLException ex) {
            Logger.getLogger(testToolsDB.class.getName()).log(Level.SEVERE, null, ex);
