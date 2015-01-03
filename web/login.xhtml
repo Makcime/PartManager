@@ -17,18 +17,16 @@ and open the template in the editor.
         </h:head>
     <body>
         <h:form>
+        <p:growl autoUpdate="true"/>
 		<p:panel id="panel" header="Login">
  
         <p:focus context="panel"/>
  
-        <p:messages />
- 
-        <h:panelGrid columns="3">
+        <h:panelGrid columns="2">
             <p:outputLabel for="pseudo" value="Pseudo" />
             <p:inputText id="pseudo" value="#{login.pseudo}" required="true">
                 <f:validateLength minimum="2" />
             </p:inputText>
-            <p:message for="pseudo" />
 
             <p:outputLabel for="passwd" value="Password" />
         	<p:password id="passwd" value="#{login.passwd}" required="true" />

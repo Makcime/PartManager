@@ -5,13 +5,31 @@
  */
 package beanPackage;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.Resource;
+import javax.sql.DataSource;
+import toolsDB.Tools;
+
+import javax.faces.application.FacesMessage;
 /**
  *
  * @author max
  */
 public class login {
+
+    @Resource(name = "coin")
+    private DataSource coin;
+
     
    private String pseudo, passwd;
+   private Integer userId;
    
        /**
      * Creates a new instance of login
@@ -36,6 +54,21 @@ public class login {
     }
 
     public void verifyLogin(){
+        Connection con;
+        Integer userId = 0;
+        try {
+            con = coin.getConnection();
+            userId = Tools.verifyLogin(con, pseudo, passwd);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            addMessage("User Id = "+userId.toString(), "Data saved");
+    }
+
+    private void addMessage(String summary, String detail) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
+        FacesContext.getCurrentInstance().addMessage(null, message);
     }
     
 }
