@@ -5,6 +5,7 @@
  */
 package toolsDB;
 
+import beanPackage.part;
 import beanPackage.user;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -123,6 +124,42 @@ public class Tools {
         }
         return rs;
     }
+    
+    public static String findId(Connection con, String table, String name){
+        PreparedStatement prep;
+        ResultSet rs = null;
+        String id = null;
+        try {
+        prep = con.prepareStatement("Select * from " + table + " where name=\"" + name + "\"");
+        rs=prep.executeQuery();
+        rs.next();
+        id =rs.getString("id");
+          } catch (SQLException ex) {
+                     System.out.println(ex);
+        }
+        return id;
+    }
+
+    public static boolean editPart(Connection con, part p) {
+        PreparedStatement prep;
+        String query;
+        boolean ok = false;
+        try {
+        query = "Update Part SET";
+        query+= " name='" + p.getName() +"'";
+        query+= ", value='" + p.getValue() +"'";
+//        query+= ", sup_ref='" + p.getSup_ref()+"'";
+        query+= ", cat_id=" + findId(con, "Category", p.getCategory());
+        query+= ", sup_id=" + findId(con, "Supplier", p.getSupplier());
+        query+= " where id="+ p.getId().toString();
+        prep = con.prepareStatement(query);
+        if(prep.executeUpdate() >  0)
+            ok = true;
+          } catch (SQLException ex) {
+                     System.out.println(ex);
+        }
+        return ok;
+        }
 
 
 
