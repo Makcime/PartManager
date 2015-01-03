@@ -55,6 +55,32 @@ public class Tools {
         return u;
     }
 
+    public static String findCat(Connection con, Integer id){
+        String name = null;
+        try {
+        ResultSet rs= selectFromWhere(con, "*", "Category", "Id=\""+id.toString()+"\"");
+        rs.next();
+        name = rs.getString("name");
+          } catch (SQLException ex) {
+                     System.out.println(ex);
+
+        }
+        return name;
+    }
+    
+    public static String findSup(Connection con, Integer id){
+        String name = null;
+        try {
+        ResultSet rs= selectFromWhere(con, "*", "Supplier", "Id=\""+id.toString()+"\"");
+        rs.next();
+        name = rs.getString("name");
+          } catch (SQLException ex) {
+                     System.out.println(ex);
+
+        }
+        return name;
+    }
+
     public static ResultSet selectFromWhere(Connection con, String column, String table, String condition){
         PreparedStatement prep;
         ResultSet rs = null;
@@ -67,6 +93,21 @@ public class Tools {
         }
         return rs;
     }
+
+    public static ResultSet selectAll(Connection con, String table){
+        PreparedStatement prep;
+        ResultSet rs = null;
+        try {
+        prep = con.prepareStatement("Select * from " + table);
+        rs=prep.executeQuery();
+        System.out.println("ds Select all");
+
+          } catch (SQLException ex) {
+                     System.out.println(ex);
+        }
+        return rs;
+    }
+
 
 
 }
