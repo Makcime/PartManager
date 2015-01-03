@@ -5,13 +5,25 @@
  */
 package beanPackage;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.Resource;
+import javax.sql.DataSource;
+import toolsDB.Tools;
+
 /**
  *
  * @author max
  */
 public class signUp {
     
-    private String name, firstName, pseudo, passwd, cp;
+    @Resource(name = "coin")
+    private DataSource coin;
+    
+    private String name, first_name, login, cp, passwd;
+    private user u;
 
     /**
      * Creates a new instance of signUp
@@ -19,7 +31,29 @@ public class signUp {
     public signUp() {
     }
 
-    public void save(){}
+    public void save(){
+    	Connection con;
+        u = new user();
+        try {
+            con = coin.getConnection();
+            u.setCp(cp);
+            u.setFirst_name(first_name);
+            u.setLogin(login);
+            u.setName(name);
+            u.setPasswd(passwd);
+            Tools.insertUser(con, u);
+        } catch (SQLException ex) {
+            Logger.getLogger(signUp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public user getU() {
+        return u;
+    }
+
+    public void setU(user u) {
+        this.u = u;
+    }
 
     public String getName() {
         return name;
@@ -29,28 +63,20 @@ public class signUp {
         this.name = name;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirst_name() {
+        return first_name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
     }
 
-    public String getPseudo() {
-        return pseudo;
+    public String getLogin() {
+        return login;
     }
 
-    public void setPseudo(String pseudo) {
-        this.pseudo = pseudo;
-    }
-
-    public String getPasswd() {
-        return passwd;
-    }
-
-    public void setPasswd(String passwd) {
-        this.passwd = passwd;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getCp() {
@@ -60,6 +86,13 @@ public class signUp {
     public void setCp(String cp) {
         this.cp = cp;
     }
-    
+
+    public String getPasswd() {
+        return passwd;
+    }
+
+    public void setPasswd(String passwd) {
+        this.passwd = passwd;
+    }
     
 }

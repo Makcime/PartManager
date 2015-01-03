@@ -18,16 +18,18 @@ and open the template in the editor.
     <body>
         <h:form>
             <!-- <h:panelGrid columns="2" cellpadding="15"> -->
-            <p:panel header="Sign Up">
+
+        <p:growl autoUpdate="true"/>
+        <p:panel header="Sign Up">
             <h:panelGrid columns="2" id="matchGrid" cellpadding="5">          
                 <h:outputText value="Name: " />
                 <p:inputText id="name" value="#{signUp.name}" />
 
                 <h:outputText value="First Name: " />
-                <p:inputText id="firstname" value="#{signUp.firstName}" />
+                <p:inputText id="firstname" value="#{signUp.first_name}" />
 
                 <h:outputText value="Pseudo: " />
-                <p:inputText id="pseudo" value="#{signUp.pseudo}" />
+                <p:inputText id="pseudo" value="#{signUp.login}" label="Pseudo" required="true"/>
 
                 <h:outputText value="Psot Code: " />
                 <p:inputText id="cp" value="#{signUp.cp}" />
@@ -40,7 +42,7 @@ and open the template in the editor.
 
                 <p:commandButton id="submitButton" value="Sign up" update="@parent" actionListener="#{signUp.save}" />
 
-            <p:messages id="messages" showDetail="true" autoUpdate="true" />
+            <!-- <p:messages id="messages" showDetail="true" autoUpdate="true" /> -->
             </h:panelGrid>
                 </p:panel>
         </h:form>

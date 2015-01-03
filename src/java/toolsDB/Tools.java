@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,7 +20,7 @@ import java.sql.Statement;
  */
 public class Tools {
 
-    public static boolean verifyLogin( Connection con, String login, String passwd){
+    public static Integer verifyLogin( Connection con, String login, String passwd){
         Statement stmt=null;
         System.out.println("In fct verifyLOGIN...");
         try {
@@ -28,14 +30,28 @@ public class Tools {
             ResultSet rs=stmt.executeQuery("SELECT * "
                      + "FROM User WHERE login="+login
                      +" AND passwd="+passwd);
-            boolean ok=rs.next();
-            System.out.println(ok);
-            return ok;
-            // if(ok)  return true;
+            rs.next();
+            return rs.getInt("id");
 
         } catch (SQLException ex) {ex.printStackTrace(); }
 
-       return false;
+       return 0;
+    }
+
+    public static void insertUser(Connection con, user u)
+    {
+        try {
+            PreparedStatement ps=con.prepareStatement("Insert into User(name, first_name, login, passwd, cp) values(?,?,?,?,?)");
+            ps.setString(1,u.getName());
+            ps.setString(2,u.getFirst_name());
+            ps.setString(3, u.getLogin());
+            ps.setString(4, u.getPasswd());
+            ps.setString(5, u.getCp());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Tools.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
     }
 
     public static user findUser(Connection con, String login){
