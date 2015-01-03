@@ -59,6 +59,9 @@ INSERT INTO Supplier(name, url)
 	VALUES	('Farnell', 'http://be.farnell.com/'),
 			('RS', 'befr.rs-online.com/');	
 
+INSERT INTO Part(name, value, unit_price, in_stock, cat_id, sup_id, sup_ref)
+	VALUES	('R100k', '100k', 0.3, 10, 1, 1, '21144');
+
 -- INSERT INTO Category(name)
 -- 	VALUES	();
 
