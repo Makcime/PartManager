@@ -38,6 +38,8 @@ and open the template in the editor.
                 <h:outputLabel for="pwd2" value="Password : *" />
                 <p:password id="pwd2" value="#{signUp.passwd}" label="Password 2" required="true" />
 
+                <p:commandButton id="submitButton" value="Sign up" update="@parent" actionListener="#{signUp.save}" />
+
             <p:messages id="messages" showDetail="true" autoUpdate="true" />
             </h:panelGrid>
                 </p:panel>
