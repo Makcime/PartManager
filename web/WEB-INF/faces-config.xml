@@ -43,4 +43,16 @@
         <managed-bean-class>beanPackage.part</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>editParts</managed-bean-name>
+        <managed-bean-class>beanPackage.editParts</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <from-view-id>/allParts.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>edit</from-outcome>
+            <to-view-id>/editParts.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>
