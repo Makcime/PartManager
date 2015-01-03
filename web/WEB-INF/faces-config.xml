@@ -55,4 +55,11 @@
             <to-view-id>/editParts.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/editParts.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>back</from-outcome>
+            <to-view-id>/allParts.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

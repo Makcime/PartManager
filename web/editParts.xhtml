@@ -18,55 +18,86 @@ and open the template in the editor.
     <body>
         <h:form id="form">
             <p:growl id="msgs" showDetail="true" autoUpdate="true"/>
+        <p:button outcome="back" value="Back" icon="ui-icon-pencil"></p:button>
+    <p:panel id="panel" header="All components">
 
-  <p:dataTable id="parts" var="part" value="#{editParts.parts}" editable="true" style="margin-bottom:20px">
-       <f:facet name="header">
-           Edit component list
-       </f:facet>
+        <p:dataTable id="parts" var="part" value="#{editParts.parts}" editable="true" style="margin-bottom:20px">
+<!--              <f:facet name="header">
+                 Edit component list
+             </f:facet>
+        -->
+             <p:ajax event="rowEdit" listener="#{editParts.onRowEdit}" update=":form:msgs" />
+             <p:ajax event="rowEditCancel" listener="#{editParts.onRowCancel}" update=":form:msgs" />
+       
+             <p:column headerText="Id" width="10">
+                 <p:cellEditor>
+                     <f:facet name="output"><h:outputText value="#{part.id}" style="float:right" /></f:facet>
+                     <f:facet name="input"><p:inputText id="modelInput" value="#{part.id}" style="float:right"/></f:facet>
+                 </p:cellEditor>
+             </p:column>
+       
+             <p:column headerText="Name" width="450">
+                 <p:cellEditor>
+                     <f:facet name="output"><h:outputText value="#{part.name}" style="float:right" /></f:facet>
+                     <f:facet name="input"><p:inputText value="#{part.name}" style="float:right" label="name"/></f:facet>
+                 </p:cellEditor>
+             </p:column>
+
+             <p:column headerText="Value">
+                 <p:cellEditor>
+                     <f:facet name="output"><h:outputText value="#{part.value}" style="float:right" /></f:facet>
+                     <f:facet name="input"><p:inputText value="#{part.value}" style="float:right" label="value"/></f:facet>
+                 </p:cellEditor>
+             </p:column>  
+
+             <p:column headerText="Category">
+                 <p:cellEditor>
+                     <f:facet name="output"><h:outputText value="#{part.category}" style="float:right" /></f:facet>
+                     <f:facet name="input">
+                         <h:selectOneMenu value="#{part.category}" style="float:right">
+                             <f:selectItems value="#{editParts.categories}" var="category" itemLabel="#{cat}" itemValue="#{cat}" />
+                         </h:selectOneMenu>
+                     </f:facet>
+                 </p:cellEditor>
+             </p:column>
+
+             <p:column headerText="Nb in stock">
+                 <p:cellEditor>
+                     <f:facet name="output"><h:outputText value="#{part.inStock}" style="float:right" /></f:facet>
+                     <f:facet name="input"><p:inputText value="#{part.inStock}" style="float:right" label="value"/></f:facet>
+                 </p:cellEditor>
+             </p:column>  
+
+             <p:column headerText="Unit price">
+                 <p:cellEditor>
+                     <f:facet name="output"><h:outputText value="#{part.unit_price}" style="float:right" /></f:facet>
+                     <f:facet name="input"><p:inputText value="#{part.unit_price}" style="float:right" label="value"/></f:facet>
+                 </p:cellEditor>
+             </p:column>  
  
-       <p:ajax event="rowEdit" listener="#{editParts.onRowEdit}" update=":form:msgs" />
-       <p:ajax event="rowEditCancel" listener="#{editParts.onRowCancel}" update=":form:msgs" />
- 
-       <p:column headerText="Id">
-           <p:cellEditor>
-               <f:facet name="output"><h:outputText value="#{part.id}" /></f:facet>
-               <f:facet name="input"><p:inputText id="modelInput" value="#{part.id}" style="width:100%"/></f:facet>
-           </p:cellEditor>
-       </p:column>
- 
-       <p:column headerText="Name">
-           <p:cellEditor>
-               <f:facet name="output"><h:outputText value="#{part.name}" /></f:facet>
-               <f:facet name="input"><p:inputText value="#{part.name}" style="width:100%" label="name"/></f:facet>
-           </p:cellEditor>
-       </p:column>
-<!--  
-       <p:column headerText="Value">
-           <p:cellEditor>
-               <f:facet name="output"><h:outputText value="#{part.value}" /></f:facet>
-               <f:facet name="input">
-                   <h:selectOneMenu value="#{part.value}" style="width:100%">
-                       <f:selectItems value="#{dtEditView.value}" var="value" itemLabel="#{value}" itemValue="#{value}" />
-                   </h:selectOneMenu>
-               </f:facet>
-           </p:cellEditor>
-       </p:column>
- 
-       <p:column headerText="Category">
-           <p:cellEditor>
-               <f:facet name="output"><h:outputText value="#{part.category}" /></f:facet>
-               <f:facet name="input">
-                   <h:selectOneMenu value="#{part.category}" style="width:100%">
-                       <f:selectItems value="#{dtEditView.colors}" var="category" itemLabel="#{category}" itemValue="#{category}" />
-                   </h:selectOneMenu>
-               </f:facet>
-           </p:cellEditor>
-       </p:column>
-  -->
-       <p:column style="width:32px">
-           <p:rowEditor />
-       </p:column>
-   </p:dataTable>
+             <p:column headerText="supplier">
+                 <p:cellEditor>
+                     <f:facet name="output"><h:outputText value="#{part.supplier}" style="float:right" /></f:facet>
+                     <f:facet name="input">
+                         <h:selectOneMenu value="#{part.supplier}" style="float:right">
+                             <f:selectItems value="#{editParts.suppliers}" var="supplier" itemLabel="#{sup}" itemValue="#{sup}" />
+                         </h:selectOneMenu>
+                     </f:facet>
+                 </p:cellEditor>
+             </p:column>
+
+             <p:column headerText="Ref">
+                 <p:cellEditor>
+                     <f:facet name="output"><h:outputText value="#{part.sup_ref}" style="float:right" /></f:facet>
+                     <f:facet name="input"><p:inputText value="#{part.new_sup_ref}" style="float:right" label="value"/></f:facet>
+                 </p:cellEditor>
+             </p:column>  
+        
+             <p:column style="width:32px">
+                 <p:rowEditor />
+             </p:column>
+         </p:dataTable>
+      </p:panel>
  
         </h:form>
     </body>

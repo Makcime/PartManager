@@ -19,7 +19,6 @@ and open the template in the editor.
         
     <h:form>			
         <p:button outcome="edit" value="Edit" icon="ui-icon-pencil">
-            <f:param name="productId" value="20" />
         </p:button>
 		<p:panel id="panel" header="All components">
 
@@ -30,31 +29,31 @@ and open the template in the editor.
 			    </p:column>
 			 
 			    <p:column headerText="Name" width="450">
-			        <h:outputText value="#{part.name}" />
+			        <h:outputText value="#{part.name}" style="float:right"/>
 			    </p:column>
 			 
 			    <p:column headerText="Value">
-			        <h:outputText value="#{part.value}" />
+			        <h:outputText value="#{part.value}" style="float:right"/>
 			    </p:column>
 			 
 			    <p:column headerText="Category">
-			        <h:outputText value="#{part.category}" />
-			    </p:column>
-			 
-			    <p:column headerText="Suplier">
-			        <h:outputText value="#{part.supplier}" />
-			    </p:column>		
-
-			    <p:column headerText="Ref">
-			        <h:outputText value="#{part.sup_ref}" />
+			        <h:outputText value="#{part.category}" style="float:right"/>
 			    </p:column>
 
 			    <p:column headerText="Nb in stock">
-			        <h:outputText value="#{part.inStock}" />
+			        <h:outputText value="#{part.inStock}" style="float:right"/>
 			    </p:column>
 			 
 			    <p:column headerText="Unit price">
-                                <h:outputText value="#{part.unit_price}" />
+                    <h:outputText value="#{part.unit_price}" style="float:right"/>
+			    </p:column>
+			 
+			    <p:column headerText="Suplier">
+			        <h:outputText value="#{part.supplier}" style="float:right"/>
+			    </p:column>		
+
+			    <p:column headerText="Ref">
+			        <h:outputText value="#{part.sup_ref}" style="float:right"/>
 			    </p:column>
 			</p:dataTable>
 	    </p:panel>

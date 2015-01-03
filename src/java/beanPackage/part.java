@@ -11,7 +11,7 @@ package beanPackage;
  */
 public class part {
     private Integer id, inStock;
-    private String name, supplier, category, value, sup_ref;
+    private String name, supplier, category, value, sup_ref, new_sup_ref;
     private Double unit_price;
     /**
      * Creates a new instance of part
@@ -73,6 +73,14 @@ public class part {
 
     public void setSup_ref(String sup_ref) {
         this.sup_ref = sup_ref;
+    }
+
+    public String getNew_sup_ref() {
+        return new_sup_ref;
+    }
+
+    public void setNew_sup_ref(String new_sup_ref) {
+        this.new_sup_ref = new_sup_ref;
     }
 
     public Double getUnit_price() {
