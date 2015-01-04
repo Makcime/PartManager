@@ -56,6 +56,19 @@ public class projects {
             }
             
     }
+    
+    public void delete(Integer id){
+        Connection con;
+        con = null;
+        try {
+            con = coin.getConnection();
+            Tools.deleteProject(con, id);
+            init();
+        } catch (SQLException ex) {
+            Logger.getLogger(project.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 
     public String getUserName() {
         return userName;

@@ -183,6 +183,17 @@ public class Tools {
         return ok;
         }
 
+    public static void deleteProject(Connection con, Integer id) {
+        PreparedStatement prep;
+        try {
+            prep = con.prepareStatement("DELETE FROM Project WHERE id="+id.toString());
+            prep.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(Tools.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }
+
 
 
 }

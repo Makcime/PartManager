@@ -5,11 +5,23 @@
  */
 package beanPackage;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.Resource;
+import javax.sql.DataSource;
+import toolsDB.Tools;
+
 /**
  *
  * @author max
  */
 public class project {
+
+    @Resource(name = "coin")
+    private DataSource coin;
+    
     private String name, description, user;
     private Integer id;
 
@@ -48,6 +60,15 @@ public class project {
         this.id = id;
     }
     
-    
-    
+    public void delete(){
+        System.out.println("id du projet :"+id);
+        Connection con;
+        con = null;
+        try {
+            con = coin.getConnection();
+            Tools.deleteProject(con, id);
+        } catch (SQLException ex) {
+            Logger.getLogger(project.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

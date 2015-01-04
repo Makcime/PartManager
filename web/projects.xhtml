@@ -17,14 +17,14 @@ and open the template in the editor.
         </h:head>
     <body>
         
-    <h:form>			
+    <h:form>
 		<p:panel id="panel" header="Projects of : #{projects.userName}">
 
                     <p:dataTable var="project" value="#{projects.projectList}" resizableColumns="true"
                                  lazy="true" rowsPerPageTemplate="10,15,50,100">
                 
-                <p:column headerText="Id" width="10">
-                    <h:outputText value="#{project.id}" />
+                <p:column headerText="Id" width="20">
+                    <h:outputText value="#{project.id}" style="float:right"/>
 			    </p:column>
                         		 
 			    <p:column headerText="Name" width="150">
@@ -33,6 +33,13 @@ and open the template in the editor.
 			 
 			    <p:column headerText="Description">
                                 <h:outputText value="#{project.description}" style="float:enter"/>
+			    </p:column>
+			    <p:column width="130">
+				    <p:splitButton value="Edit" actionListener="#{project.edit}" icon="ui-icon-pencil">
+				        <p:menuitem value="Delete" actionListener="#{projects.delete(project.id)}" ajax="false" icon="ui-icon-close" />
+				        <p:separator />
+				        <p:menuitem value="Homepage" url="http://www.primefaces.org" icon="ui-icon-extlink" />
+				    </p:splitButton>
 			    </p:column>
 			 
 

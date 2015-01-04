@@ -6,7 +6,7 @@
     <managed-bean>
         <managed-bean-name>test</managed-bean-name>
         <managed-bean-class>beanPackage.testToolsDB</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
+        <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
@@ -34,7 +34,7 @@
     <managed-bean>
         <managed-bean-name>signUp</managed-bean-name>
         <managed-bean-class>beanPackage.signUp</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
+        <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>login</managed-bean-name>
@@ -44,12 +44,12 @@
     <managed-bean>
         <managed-bean-name>allParts</managed-bean-name>
         <managed-bean-class>beanPackage.allParts</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
+        <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>part</managed-bean-name>
         <managed-bean-class>beanPackage.part</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
+        <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>editParts</managed-bean-name>
@@ -73,6 +73,11 @@
     <managed-bean>
         <managed-bean-name>projects</managed-bean-name>
         <managed-bean-class>beanPackage.projects</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>project</managed-bean-name>
+        <managed-bean-class>beanPackage.project</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
 </faces-config>
