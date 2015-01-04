@@ -51,6 +51,15 @@ CREATE TABLE Project(
 	CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES User(id)
 );
 
+CREATE TABLE Bom(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	project_id INT,
+	part_id INT,
+	qty INT,
+	CONSTRAINT fk_project_id FOREIGN KEY (project_id) REFERENCES Project(id),
+	CONSTRAINT fk_part_id FOREIGN KEY (part_id) REFERENCES Part(id)
+);
+
 INSERT INTO User(name, first_name, login, passwd, cp)
 	VALUES	('Doe', 'John', 'admin', 'passwd', 1000),
 			('Dupont', 'Jean', 'jdupont', 'azerty', 6001);	
