@@ -33,7 +33,8 @@ and open the template in the editor.
 
         </h:panelGrid>
  
-        <p:commandButton id="submitButton" value="Login" update="@parent" actionListener="#{login.verifyLogin}" />
+        <p:commandButton id="submitButton" value="Login" ajax="true" update="@parent" action="#{login.verifyLogin}" resetValues="true" icon="ui-icon-power"/>
+        <p:button outcome="signup" value="Sign up   " icon="ui-icon-star" ></p:button>
     </p:panel>
            
         </h:form>

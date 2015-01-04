@@ -12,14 +12,14 @@ and open the template in the editor.
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Projetc list</title>
+                <title>Project list</title>
             </f:facet>
         </h:head>
     <body>
         
-    <h:form>
+        <h:form >                
+            <p:commandButton id="back" value="Back" action="back" icon="ui-icon-arrowreturnthick-1-w" />
 		<p:panel id="panel" header="Projects of : #{projects.userName}">
-
                     <p:dataTable var="project" value="#{projects.projectList}" resizableColumns="true"
                                  lazy="true" rowsPerPageTemplate="10,15,50,100">
                 

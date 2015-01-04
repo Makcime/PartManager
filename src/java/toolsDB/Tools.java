@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -33,8 +35,8 @@ public class Tools {
             ResultSet rs=stmt.executeQuery("SELECT * "
                      + "FROM User WHERE login="+login
                      +" AND passwd="+passwd);
-            rs.next();
-            return rs.getInt("id");
+            if(rs.next())
+                return rs.getInt("id");
 
         } catch (SQLException ex) {ex.printStackTrace(); }
 
@@ -51,6 +53,24 @@ public class Tools {
             ps.setString(4, u.getPasswd());
             ps.setString(5, u.getCp());
             ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Tools.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    }
+
+    public static void newProject(Connection con, String name, String description)
+    {
+        HttpSession session=
+              (HttpSession)
+              FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+            Integer userId = (Integer)session.getAttribute("userId");
+        try {
+            PreparedStatement ps=con.prepareStatement("Insert into Project(name, description, user_id) values(?,?,?)");
+            ps.setString(1,name);
+            ps.setString(2,description);
+            ps.setInt(3, userId);
+            ps.execute();
         } catch (SQLException ex) {
             Logger.getLogger(Tools.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -14,6 +14,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import toolsDB.Tools;
 
@@ -36,13 +38,21 @@ public class projects {
     }
 
     @PostConstruct
-    public  void init(){    
+    public void postConstuct(){
+        init();
+    }
+    
+    public String init(){
+              HttpSession session=
+              (HttpSession)
+              FacesContext.getCurrentInstance().getExternalContext().getSession(true);
             Connection con = null;
+            con=(Connection)session.getAttribute("con");
             this.projectList = new ArrayList<project>();
+            Integer userId = (Integer)session.getAttribute("userId");
             try {
-                con = coin.getConnection();
-                userName = Tools.findName(con,"User" ,1);
-                ResultSet rs = Tools.selectFromWhere(con,"*", "Project", "user_id=1");
+                userName = Tools.findName(con,"User" ,userId);
+                ResultSet rs = Tools.selectFromWhere(con,"*", "Project", "user_id="+userId.toString());
                 while (rs.next()){
                     project p = new project();
                     p.setId(rs.getInt("id"));
@@ -54,6 +64,7 @@ public class projects {
             } catch (SQLException ex) {
                 Logger.getLogger(projects.class.getName()).log(Level.SEVERE, null, ex);
             }
+           return "back";
             
     }
     

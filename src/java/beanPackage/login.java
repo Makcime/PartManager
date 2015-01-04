@@ -54,18 +54,41 @@ public class login {
         this.passwd = passwd;
     }
 
-    public void verifyLogin(){
+    public String verifyLogin(){
         Connection con;
         Integer userId = 0;
 //            con = coin.getConnection();
-            con = getSessionConnection();
+      HttpSession session=
+              (HttpSession)
+              FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+      con=(Connection)session.getAttribute("con");
+      if(con==null){
+            try {
+                con=coin.getConnection();
+                session.setAttribute("con", con);
+            } catch (SQLException ex) {
+                Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+      }
             userId = Tools.verifyLogin(con, pseudo, passwd);
+            session.setAttribute("userId", userId);
             addMessage("User Id = "+userId.toString(), "Data saved");
+            if (userId != 0)
+                return "index";
+            else
+                return "idem";
     }
 
     private void addMessage(String summary, String detail) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
         FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+    
+    public String logout(){
+        HttpSession session = (HttpSession)
+        FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        session.invalidate();
+        return "logout";
     }
     
     public Connection getSessionConnection(){

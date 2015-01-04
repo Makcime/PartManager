@@ -16,7 +16,7 @@ and open the template in the editor.
             </f:facet>
         </h:head>
     <body>
-        <h:form>
+        <h:form onsubmit="#{projects.init()}">
         <p:growl autoUpdate="true"/>
 		<p:panel id="panel" header="New project">
  
@@ -31,13 +31,11 @@ and open the template in the editor.
 
             <p:outputLabel value="Description" />
             <!-- <p:outputLabel for="descrption" value="Description" /> -->
-            <p:inputTextarea id="descrption" rows="5" cols="30" counter="display" maxlength="150" counterTemplate="{0} characters remaining." autoResize="false" />
+            <p:inputTextarea id="descrption" value="#{newProject.description}" rows="5" cols="30" counter="display" maxlength="150" counterTemplate="{0} characters remaining." autoResize="false" />
            
             <p:outputLabel for="display" value="" />
 		    <h:outputText id="display" />
-
- 
-        	<p:commandButton id="submitButton" value="Save" update="@parent" actionListener="#{newProject.save}" icon="ui-icon-disk"/>
+                    <p:commandButton id="new" value="Save" update="@parent" action="#{projects.init}" actionListener="#{newProject.save}" icon="ui-icon-disk"/>
 
         </h:panelGrid>
 		</p:panel>
