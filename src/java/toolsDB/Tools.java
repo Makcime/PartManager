@@ -74,16 +74,22 @@ public class Tools {
         return u;
     }
 
-    public static String findCat(Connection con, Integer id){
+    public static String findName(Connection con, String table, Integer id){
         String name = null;
         try {
-        ResultSet rs= selectFromWhere(con, "*", "Category", "Id=\""+id.toString()+"\"");
+        ResultSet rs= selectFromWhere(con, "*", table, "Id="+id.toString());
         rs.next();
         name = rs.getString("name");
           } catch (SQLException ex) {
                      System.out.println(ex);
 
         }
+        return name;
+    }
+
+    public static String findCat(Connection con, Integer id){
+        String name = null;
+        name = findName(con, "Category", id);
         return name;
     }
 
@@ -118,7 +124,6 @@ public class Tools {
         PreparedStatement prep;
         ResultSet rs = null;
         try {
-        System.out.println(condition);
         prep = con.prepareStatement("Select " + column + " from " + table + " where " + condition);
         rs=prep.executeQuery();
           } catch (SQLException ex) {

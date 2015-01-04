@@ -26,6 +26,10 @@
             <from-outcome>newProject</from-outcome>
             <to-view-id>/newProject.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>projects</from-outcome>
+            <to-view-id>/projects.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
     <managed-bean>
         <managed-bean-name>signUp</managed-bean-name>
@@ -66,4 +70,9 @@
             <to-view-id>/allParts.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    <managed-bean>
+        <managed-bean-name>projects</managed-bean-name>
+        <managed-bean-class>beanPackage.projects</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
 </faces-config>
