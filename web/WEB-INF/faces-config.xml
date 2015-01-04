@@ -11,12 +11,8 @@
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>login</from-outcome>
+            <from-outcome>logout</from-outcome>
             <to-view-id>/login.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>signup</from-outcome>
-            <to-view-id>/signUp.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-outcome>allParts</from-outcome>
@@ -80,4 +76,15 @@
         <managed-bean-class>beanPackage.project</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+    <navigation-rule>
+        <from-view-id>/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>signup</from-outcome>
+            <to-view-id>/signUp.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>
