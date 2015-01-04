@@ -50,20 +50,8 @@ public class projects {
             con=(Connection)session.getAttribute("con");
             this.projectList = new ArrayList<project>();
             Integer userId = (Integer)session.getAttribute("userId");
-            try {
-                userName = Tools.findName(con,"User" ,userId);
-                ResultSet rs = Tools.selectFromWhere(con,"*", "Project", "user_id="+userId.toString());
-                while (rs.next()){
-                    project p = new project();
-                    p.setId(rs.getInt("id"));
-                    p.setName(rs.getString("name"));
-                    p.setDescription(rs.getString("description"));
-                    p.setUser(Tools.findName(con,"User" ,rs.getInt("user_id")));
-                    projectList.add(p);
-                }   
-            } catch (SQLException ex) {
-                Logger.getLogger(projects.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            userName = Tools.findName(con,"User" ,userId);	
+            projectList = Tools.listProjects(con, userId);
            return "back";
             
     }
@@ -79,8 +67,7 @@ public class projects {
             Logger.getLogger(project.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-
+    
     public String getUserName() {
         return userName;
     }

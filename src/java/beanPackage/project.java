@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import toolsDB.Tools;
 
@@ -64,11 +66,12 @@ public class project {
         System.out.println("id du projet :"+id);
         Connection con;
         con = null;
-        try {
-            con = coin.getConnection();
-            Tools.deleteProject(con, id);
-        } catch (SQLException ex) {
-            Logger.getLogger(project.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        HttpSession session = (HttpSession)
+                FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+        con=(Connection)session.getAttribute("con");
+        Tools.deleteProject(con, id);
+    }
+    public String edit(){
+        return "edit";
     }
 }

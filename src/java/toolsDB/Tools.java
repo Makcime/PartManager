@@ -6,6 +6,7 @@
 package toolsDB;
 
 import beanPackage.part;
+import beanPackage.project;
 import beanPackage.user;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -126,6 +127,25 @@ public class Tools {
         }
         return l;
     }
+
+    public static List<project> listProjects(Connection con, Integer userId){
+        List<project> l = new ArrayList<project>();
+        ResultSet rs = selectFromWhere(con,"*", "Project", "user_id="+userId.toString());
+        try {
+            while (rs.next()){
+                project p = new project();
+                p.setId(rs.getInt("id"));
+                p.setName(rs.getString("name"));
+                p.setDescription(rs.getString("description"));
+                p.setUser(Tools.findName(con,"User" ,rs.getInt("user_id")));
+                l.add(p);
+            }   
+        } catch (SQLException ex) {
+            Logger.getLogger(Tools.class.getName()).log(Level.SEVERE, null, ex);
+        }
+ 
+            return l;
+    }
     
     public static String findSup(Connection con, Integer id){
         String name = null;
@@ -212,6 +232,25 @@ public class Tools {
             Logger.getLogger(Tools.class.getName()).log(Level.SEVERE, null, ex);
         }
        
+    }
+
+    public static project findProject(Connection con, String id) {
+        project p = new project();
+        PreparedStatement prep;
+       try {
+            prep = con.prepareStatement("SELECT * FROM Project WHERE id="+id);
+            ResultSet rs = prep.executeQuery();
+            if (rs.next()){
+                p.setDescription(rs.getString("description"));
+                p.setId(Integer.parseInt(id));
+                p.setName(rs.getString("name"));
+//                p.setUser(findName(con, "User" , Integer.parseInt(id)));
+                p.setUser("Default");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Tools.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+        return p;
     }
 
 

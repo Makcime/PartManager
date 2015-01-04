@@ -18,7 +18,7 @@ and open the template in the editor.
     <body>
         
         <h:form >                
-            <p:commandButton id="back" value="Back" action="back" icon="ui-icon-arrowreturnthick-1-w" />
+            <p:commandButton id="back" value="Back" action="index" icon="ui-icon-arrowreturnthick-1-w" />
 		<p:panel id="panel" header="Projects of : #{projects.userName}">
                     <p:dataTable var="project" value="#{projects.projectList}" resizableColumns="true"
                                  lazy="true" rowsPerPageTemplate="10,15,50,100">
@@ -35,10 +35,11 @@ and open the template in the editor.
                                 <h:outputText value="#{project.description}" style="float:enter"/>
 			    </p:column>
 			    <p:column width="130">
-				    <p:splitButton value="Edit" actionListener="#{project.edit}" icon="ui-icon-pencil">
+				    <p:splitButton value="Edit" action="edit" icon="ui-icon-pencil">
+                                        <f:param name="projectId" value="#{project.id}" />
 				        <p:menuitem value="Delete" actionListener="#{projects.delete(project.id)}" ajax="false" icon="ui-icon-close" />
 				        <p:separator />
-				        <p:menuitem value="Homepage" url="http://www.primefaces.org" icon="ui-icon-extlink" />
+				        <p:menuitem value="Homepage" action="index" icon="ui-icon-extlink" />
 				    </p:splitButton>
 			    </p:column>
 			 

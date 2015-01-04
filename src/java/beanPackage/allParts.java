@@ -15,6 +15,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import toolsDB.Tools;
 import static toolsDB.Tools.selectAll;
@@ -26,10 +28,7 @@ import static toolsDB.Tools.selectAll;
 public class allParts implements Serializable{
     @Resource(name = "coin")
     private DataSource coin;
-
-   
-    
-    private List<part> parts;;
+    private List<part> parts;
     
     /**
      * Creates a new instance of allParts
@@ -41,7 +40,10 @@ public class allParts implements Serializable{
             Connection con = null;
             this.parts = new ArrayList<part>();
             try {
-                con = coin.getConnection();
+                HttpSession session=
+                (HttpSession)
+                FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+                con=(Connection)session.getAttribute("con");
                 ResultSet rs = selectAll(con, "Part");
                 while (rs.next()){
                     part p = new part();

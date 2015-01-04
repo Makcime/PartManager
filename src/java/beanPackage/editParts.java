@@ -17,6 +17,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import org.primefaces.event.RowEditEvent;
 import toolsDB.Tools;
@@ -45,7 +46,10 @@ public class editParts implements Serializable{
     public  void init(){    
             this.parts = new ArrayList<part>();
             try {
-                con = coin.getConnection();
+                HttpSession session=
+                (HttpSession)
+                FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+                con=(Connection)session.getAttribute("con");
                 ResultSet rs = Tools.selectAll(con, "Part");
                 while (rs.next()){
                     part p = new part();

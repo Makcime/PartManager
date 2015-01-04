@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Project management</title>
+            </f:facet>
+        </h:head>
+    <body>
+        <h:form>
+        <p:growl autoUpdate="true"/>
+		<p:panel id="panel" header="Prject management">
+        <p:focus context="panel"/>
+            <h3 style="margin-top:0">Project Name : "#{projectManager.name}"</h3>
+    <p:accordionPanel>
+        <p:tab title="Info">
+            <h:panelGrid columns="1" cellpadding="10">
+                <p:outputLabel id="owner" value="Project Owner : #{projectManager.user}" />
+                <p:outputLabel id="id" value="Project Id : #{projectManager.id}" />
+                <p:outputLabel id="id" value="Creation date : " />
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Description">
+            <h:panelGrid columns="1" cellpadding="10">
+                <h:outputText value="#{projectManager.description}" />
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Bom">
+            <h:panelGrid columns="1" cellpadding="10">
+                <h:outputText value="Todo add the bom table " />
+            </h:panelGrid>
+        </p:tab>
+    </p:accordionPanel>
+ 
+	</p:panel>
+           
+        </h:form>
+    </body>
+</html>
