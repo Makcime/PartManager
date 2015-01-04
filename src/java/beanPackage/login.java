@@ -18,6 +18,7 @@ import javax.sql.DataSource;
 import toolsDB.Tools;
 
 import javax.faces.application.FacesMessage;
+import javax.servlet.http.HttpSession;
 /**
  *
  * @author max
@@ -56,19 +57,32 @@ public class login {
     public void verifyLogin(){
         Connection con;
         Integer userId = 0;
-        try {
-            con = coin.getConnection();
+//            con = coin.getConnection();
+            con = getSessionConnection();
             userId = Tools.verifyLogin(con, pseudo, passwd);
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
-        }
             addMessage("User Id = "+userId.toString(), "Data saved");
     }
 
     private void addMessage(String summary, String detail) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
         FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+    
+    public Connection getSessionConnection(){
+      HttpSession session=
+              (HttpSession)
+              FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+      Connection con=(Connection)session.getAttribute("con");
+      if(con==null){
+            try {
+                con=coin.getConnection();
+                session.setAttribute("con", con);
+            } catch (SQLException ex) {
+                Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+      }
+
+        return con;
     }
     
 }
