@@ -91,5 +91,14 @@ public class part {
         this.unit_price = unit_price;
     }
     
+    public String toString(){
+        String str;
+        str = id.toString() + " - " +inStock.toString() + " - " + 
+                name + " - " +supplier + " - " +category + " - " +
+                value + " - " +sup_ref + " - " + 
+                unit_price.toString();
+        return str;
+    }
+    
     
 }

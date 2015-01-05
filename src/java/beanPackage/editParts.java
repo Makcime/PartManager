@@ -31,10 +31,11 @@ public class editParts implements Serializable{
     @Resource(name = "coin")
     private DataSource coin;
 
-    private List<part> parts;
+    private List<part> parts, partsToUpdate;
     private List<String> categories, suppliers;
 
     private Connection con = null;
+    private HttpSession session;
 
     /**
      * Creates a new instance of editParts
@@ -45,8 +46,7 @@ public class editParts implements Serializable{
     @PostConstruct
     public  void init(){    
             this.parts = new ArrayList<part>();
-            HttpSession session=
-                    (HttpSession)
+            session=(HttpSession)
                     FacesContext.getCurrentInstance().getExternalContext().getSession(true);
             con=(Connection)session.getAttribute("con");
             this.parts = Tools.listParts(con);
@@ -56,12 +56,20 @@ public class editParts implements Serializable{
  	
  	public void onRowEdit(RowEditEvent event) {
             part p = ((part) event.getObject());
-            boolean ok;
+            boolean ok = true;
             FacesMessage msg = null;
-            
-            ok = Tools.editPart(con , p);
+            partsToUpdate =(List<part>)session.getAttribute("partsToUpdate");
+            if(partsToUpdate == null){
+                partsToUpdate = new ArrayList<part>();
+            }
+            partsToUpdate.add(p);
+            session.setAttribute("partsToUpdate", partsToUpdate);
+//            ok = Tools.editPart(con , p);
+        for (part P : partsToUpdate) {
+            System.out.println(P.toString());  
+        }
             if(ok)
-	        msg = new FacesMessage("Part Edited", p.getName());
+	        msg = new FacesMessage("Component added to the update cart", p.toString());
 	    else
 	        msg = new FacesMessage("Edit Cancelled - error during database update", p.getName());
 
