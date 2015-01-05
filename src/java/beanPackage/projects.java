@@ -24,63 +24,61 @@ import toolsDB.Tools;
  * @author max
  */
 public class projects {
- 
-    @Resource(name = "coin")
-    private DataSource coin;
 
-    private String userName;
-    private List<project> projectList;
+	@Resource(name = "coin")
+	private DataSource coin;
+
+	private String userName;
+	private List < project > projectList;
 
     /**
      * Creates a new instance of projects
      */
-    public projects() {
-    }
+	public projects() {
+	} @PostConstruct public void postConstuct() {
+		init();
+	}
 
-    @PostConstruct
-    public void postConstuct(){
-        init();
-    }
-    
-    public String init(){
-              HttpSession session=
-              (HttpSession)
-              FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-            Connection con = null;
-            con=(Connection)session.getAttribute("con");
-            this.projectList = new ArrayList<project>();
-            Integer userId = (Integer)session.getAttribute("userId");
-            userName = Tools.findName(con,"User" ,userId);	
-            projectList = Tools.listProjects(con, userId);
-           return "back";
-            
-    }
-    
-    public void delete(Integer id){
-        Connection con;
-        con = null;
-        try {
-            con = coin.getConnection();
-            Tools.deleteProject(con, id);
-            init();
-        } catch (SQLException ex) {
-            Logger.getLogger(project.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public String getUserName() {
-        return userName;
-    }
+	public String init() {
+		HttpSession session = (HttpSession)
+		    FacesContext.getCurrentInstance().getExternalContext().
+		    getSession(true);
+		Connection con = null;
+		con = (Connection) session.getAttribute("con");
+		this.projectList = new ArrayList < project > ();
+		Integer userId = (Integer) session.getAttribute("userId");
+		userName = Tools.findName(con, "User", userId);
+		projectList = Tools.listProjects(con, userId);
+		return "back";
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+	}
 
-    public List<project> getProjectList() {
-        return projectList;
-    }
+	public void delete(Integer id) {
+		Connection con;
+		con = null;
+		try {
+			con = coin.getConnection();
+			Tools.deleteProject(con, id);
+			init();
+		} catch(SQLException ex) {
+			Logger.getLogger(project.class.getName()).
+			    log(Level.SEVERE, null, ex);
+		}
+	}
 
-    public void setProjectList(List<project> projectList) {
-        this.projectList = projectList;
-    }
- }
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public List < project > getProjectList() {
+		return projectList;
+	}
+
+	public void setProjectList(List < project > projectList) {
+		this.projectList = projectList;
+	}
+}

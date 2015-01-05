@@ -16,77 +16,76 @@ import toolsDB.Tools;
  * @author max
  */
 public class projectManager {
-    
-    private project p;
-    private String projectId, name, description, user;
+
+	private project p;
+	private String projectId, name, description, user;
 
     /**
      * Creates a new instance of projectManager
      */
-    public projectManager() {
-    }
-    
-    @PostConstruct
-    public void init(){
-        HttpSession session=
-        (HttpSession)
-        FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-        Connection con = null;
-        con=(Connection)session.getAttribute("con");
-        getId();
-        System.out.println("projectId" + projectId);
-        p = Tools.findProject(con, projectId);
-        name = p.getName();
-        description = p.getDescription();
-        user = p.getUser();
-    }
-    
-    public String getId(){
-            FacesContext context = FacesContext.getCurrentInstance();
-            projectId = context.getExternalContext().getRequestParameterMap().get("projectId");
-            return projectId;
-    }
+	public projectManager() {
+	} @PostConstruct public void init() {
+		HttpSession session = (HttpSession)
+		    FacesContext.getCurrentInstance().getExternalContext().
+		    getSession(true);
+		Connection con = null;
+		con = (Connection) session.getAttribute("con");
+		getId();
+		System.out.println("projectId" + projectId);
+		p = Tools.findProject(con, projectId);
+		name = p.getName();
+		description = p.getDescription();
+		user = p.getUser();
+	}
 
-    public project getP() {
-        return p;
-    }
+	public String getId() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		projectId =
+		    context.getExternalContext().getRequestParameterMap().
+		    get("projectId");
+		return projectId;
+	}
 
-    public void setP(project p) {
-        this.p = p;
-    }
+	public project getP() {
+		return p;
+	}
 
-    public String getProjectId() {
-        return projectId;
-    }
+	public void setP(project p) {
+		this.p = p;
+	}
 
-    public void setProjectId(String projectId) {
-        this.projectId = projectId;
-    }
+	public String getProjectId() {
+		return projectId;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setProjectId(String projectId) {
+		this.projectId = projectId;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public String getUser() {
-        return user;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public void setUser(String user) {
-        this.user = user;
-    }
-    
-    
-    
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
+
+
 }

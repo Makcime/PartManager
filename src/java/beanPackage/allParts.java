@@ -25,53 +25,35 @@ import static toolsDB.Tools.selectAll;
  *
  * @author max
  */
-public class allParts implements Serializable{
-    @Resource(name = "coin")
-    private DataSource coin;
-    private List<part> parts;
-    
+public class allParts implements Serializable {
+	@Resource(name = "coin")
+	private DataSource coin;
+	private List < part > parts;
+
     /**
      * Creates a new instance of allParts
      */
-    public allParts() {}
-   
-    @PostConstruct
-    public void postConstuct(){
-        init();
-    }
-    
-    public  String init(){    
-            Connection con = null;
-            this.parts = new ArrayList<part>();
-            HttpSession session=
-                    (HttpSession)
-                    FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-            con=(Connection)session.getAttribute("con");
-            this.parts = Tools.listParts(con);            
-           return "back";
-    }
+	public allParts() {
+	} @PostConstruct public void postConstuct() {
+		init();
+	}
 
-    public String test(){
-        Connection con = null;
-        String test = "fail";
-        try {
-            con = coin.getConnection();
-        
-                ResultSet rs = selectAll(con, "Part");
-                while(rs.next())
-                    test += rs.getString("name");
-                } catch (SQLException ex) {
-            Logger.getLogger(allParts.class.getName()).log(Level.SEVERE, null, ex);
-        }
-                return test;
+	public String init() {
+		Connection con = null;
+		this.parts = new ArrayList < part > ();
+		HttpSession session = (HttpSession)
+		    FacesContext.getCurrentInstance().getExternalContext().
+		    getSession(true);
+		con = (Connection) session.getAttribute("con");
+		this.parts = Tools.listParts(con);
+		return "back";
+	}
 
-    }
+	public List < part > getParts() {
+		return parts;
+	}
 
-    public List<part> getParts() {
-        return parts;
-    }
-
-    public void setParts(List<part> parts) {
-        this.parts = parts;
-    }
+	public void setParts(List < part > parts) {
+		this.parts = parts;
+	}
 }

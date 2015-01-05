@@ -21,57 +21,56 @@ import toolsDB.Tools;
  */
 public class project {
 
-    @Resource(name = "coin")
-    private DataSource coin;
-    
-    private String name, description, user;
-    private Integer id;
+	@Resource(name = "coin")
+	private DataSource coin;
 
-    public project() {
-    }
+	private String name, description, user;
+	private Integer id;
 
-    public String getName() {
-        return name;
-    }
+	public project() {
+	} public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public String getUser() {
-        return user;
-    }
+	public String getUser() {
+		return user;
+	}
 
-    public void setUser(String user) {
-        this.user = user;
-    }
+	public void setUser(String user) {
+		this.user = user;
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-    
-    public void delete(){
-        System.out.println("id du projet :"+id);
-        Connection con;
-        con = null;
-        HttpSession session = (HttpSession)
-                FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-        con=(Connection)session.getAttribute("con");
-        Tools.deleteProject(con, id);
-    }
-    public String edit(){
-        return "edit";
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public void delete() {
+		System.out.println("id du projet :" + id);
+		Connection con;
+		con = null;
+		HttpSession session = (HttpSession)
+		    FacesContext.getCurrentInstance().getExternalContext().
+		    getSession(true);
+		con = (Connection) session.getAttribute("con");
+		Tools.deleteProject(con, id);
+	}
+	public String edit() {
+		return "edit";
+	}
 }

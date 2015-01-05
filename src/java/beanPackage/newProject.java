@@ -15,40 +15,38 @@ import toolsDB.Tools;
  * @author max
  */
 public class newProject {
-    private String name, description;
+	private String name, description;
     /**
      * Creates a new instance of newProject
      */
-    public newProject() {
-    }
-    
-    public String save(){
-        HttpSession session=
-        (HttpSession)
-        FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-      Connection con = null;
-      con=(Connection)session.getAttribute("con");
-        Tools.newProject(con, name, description);
+	public newProject() {
+	} public String save() {
+		HttpSession session = (HttpSession)
+		    FacesContext.getCurrentInstance().getExternalContext().
+		    getSession(true);
+		Connection con = null;
+		con = (Connection) session.getAttribute("con");
+		Tools.newProject(con, name, description);
 //        projects.init()
-        return "back";
-    }
+		return "back";
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    
-    
-    
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+
 }
