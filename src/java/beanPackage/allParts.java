@@ -39,30 +39,11 @@ public class allParts implements Serializable{
     public  void init(){    
             Connection con = null;
             this.parts = new ArrayList<part>();
-            try {
-                HttpSession session=
-                (HttpSession)
-                FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-                con=(Connection)session.getAttribute("con");
-                ResultSet rs = selectAll(con, "Part");
-                while (rs.next()){
-                    part p = new part();
-                    System.out.println("next");
-                    p.setId(rs.getInt("id"));
-                    p.setName(rs.getString("name"));
-                    p.setValue(rs.getString("value"));
-                    p.setCategory(Tools.findCat(con, rs.getInt("cat_id")));
-                    p.setSupplier(Tools.findSup(con, rs.getInt("sup_id")));
-                    p.setSup_ref(rs.getString("sup_ref"));
-                    p.setNew_sup_ref(rs.getString("sup_ref"));
-                    p.setInStock(rs.getInt("in_stock"));
-                    p.setUnit_price(rs.getDouble("unit_price"));
-                    parts.add(p);
-                }   
-            } catch (SQLException ex) {
-                Logger.getLogger(allParts.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
+            HttpSession session=
+                    (HttpSession)
+                    FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+            con=(Connection)session.getAttribute("con");
+            this.parts = Tools.listParts(con);            
     }
 
     public String test(){

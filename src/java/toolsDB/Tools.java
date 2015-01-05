@@ -128,6 +128,30 @@ public class Tools {
         return l;
     }
 
+    public static List<part> listParts(Connection con){
+        List<part> l = new ArrayList<part>();
+        ResultSet rs = Tools.selectAll(con, "Part");
+        try {
+            while (rs.next()){
+                part p = new part();
+                p.setId(rs.getInt("id"));
+                p.setName(rs.getString("name"));
+                p.setValue(rs.getString("value"));
+                p.setCategory(Tools.findCat(con, rs.getInt("cat_id")));
+                p.setSupplier(Tools.findSup(con, rs.getInt("sup_id")));
+                p.setSup_ref(rs.getString("sup_ref"));
+                p.setNew_sup_ref(rs.getString("sup_ref"));
+                p.setInStock(rs.getInt("in_stock"));
+                p.setUnit_price(rs.getDouble("unit_price"));
+                l.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Tools.class.getName()).log(Level.SEVERE, null, ex);
+        }
+ 
+            return l;
+    }
+
     public static List<project> listProjects(Connection con, Integer userId){
         List<project> l = new ArrayList<project>();
         ResultSet rs = selectFromWhere(con,"*", "Project", "user_id="+userId.toString());
