@@ -39,7 +39,7 @@
         <managed-bean-scope>session</managed-bean-scope></managed-bean>
     <managed-bean>
         <managed-bean-name>part</managed-bean-name>
-        <managed-bean-class>ManagedbeanPackage.part</managed-bean-class>
+        <managed-bean-class>beanPackage.part</managed-bean-class>
     
         <managed-bean-scope>session</managed-bean-scope></managed-bean>
     <managed-bean>

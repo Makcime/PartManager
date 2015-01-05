@@ -5,9 +5,9 @@
  */
 package toolsDB;
 
-import ManagedbeanPackage.part;
+import beanPackage.part;
 import ManagedbeanPackage.project;
-import ManagedbeanPackage.user;
+import beanPackage.user;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
