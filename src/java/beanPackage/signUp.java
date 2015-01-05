@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import toolsDB.Tools;
 
@@ -30,22 +32,15 @@ public class signUp {
      */
 	public signUp() {
 	} public void save() {
-		Connection con;
-		u = new user();
-		try {
-			con = coin.getConnection();
-			u.setCp(cp);
-			u.setFirst_name(first_name);
-			u.setLogin(login);
-			u.setName(name);
-			u.setPasswd(passwd);
-			Tools.insertUser(con, u);
-		} catch(SQLException ex) {
-			Logger.getLogger(signUp.class.getName()).log(Level.
-								     SEVERE,
-								     null,
-								     ex);
-		}
+            Connection con;
+            u = new user();
+            con = getSessionConnection();
+            u.setCp(cp);
+            u.setFirst_name(first_name);
+            u.setLogin(login);
+            u.setName(name);
+            u.setPasswd(passwd);
+            Tools.insertUser(con, u);
 	}
 
 	public user getU() {
@@ -95,5 +90,23 @@ public class signUp {
 	public void setPasswd(String passwd) {
 		this.passwd = passwd;
 	}
+        
+        public Connection getSessionConnection() {
+		HttpSession session = (HttpSession)
+		    FacesContext.getCurrentInstance().getExternalContext().
+		    getSession(true);
+		Connection con = (Connection) session.getAttribute("con");
+		if (con == null) {
+			try {
+				con = coin.getConnection();
+				session.setAttribute("con", con);
+			}
+			catch(SQLException ex) {
+				Logger.getLogger(login.class.getName()).
+				    log(Level.SEVERE, null, ex);
+			}
+		}
 
+		return con;
+	}
 }

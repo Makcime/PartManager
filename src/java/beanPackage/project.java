@@ -6,9 +6,6 @@
 package beanPackage;
 
 import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -20,9 +17,6 @@ import toolsDB.Tools;
  * @author max
  */
 public class project {
-
-	@Resource(name = "coin")
-	private DataSource coin;
 
 	private String name, description, user;
 	private Integer id;
@@ -63,7 +57,6 @@ public class project {
 	public void delete() {
 		System.out.println("id du projet :" + id);
 		Connection con;
-		con = null;
 		HttpSession session = (HttpSession)
 		    FacesContext.getCurrentInstance().getExternalContext().
 		    getSession(true);

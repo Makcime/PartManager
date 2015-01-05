@@ -7,12 +7,8 @@ package beanPackage;
 
 import java.io.Serializable;
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
@@ -27,13 +23,8 @@ import toolsDB.Tools;
  * @author max
  */
 public class editParts implements Serializable {
-
-	@Resource(name = "coin")
-	private DataSource coin;
-
 	private List < part > parts, partsToUpdate;
 	private List < String > categories, suppliers;
-
 	private Connection con = null;
 	private HttpSession session;
 

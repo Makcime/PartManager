@@ -7,27 +7,18 @@ package beanPackage;
 
 import java.io.Serializable;
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-import javax.sql.DataSource;
 import toolsDB.Tools;
-import static toolsDB.Tools.selectAll;
 
 /**
  *
  * @author max
  */
 public class allParts implements Serializable {
-	@Resource(name = "coin")
-	private DataSource coin;
 	private List < part > parts;
 
     /**

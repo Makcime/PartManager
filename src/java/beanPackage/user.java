@@ -14,12 +14,6 @@ public class user {
 	private String name, first_name, login, passwd, cp;
 	Integer id;
 
-	public String getFirst_name() {
-		return first_name;
-	} public void setFirst_name(String first_name) {
-		this.first_name = first_name;
-	}
-
 	public String getLogin() {
 		return login;
 	}
@@ -65,5 +59,12 @@ public class user {
 	}
 
 
+	public String getFirst_name() {
+		return first_name;
+	} 
+        
+        public void setFirst_name(String first_name) {
+		this.first_name = first_name;
+	}
 
 }

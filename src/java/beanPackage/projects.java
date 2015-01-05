@@ -6,12 +6,8 @@
 package beanPackage;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.context.FacesContext;
@@ -24,9 +20,6 @@ import toolsDB.Tools;
  * @author max
  */
 public class projects {
-
-	@Resource(name = "coin")
-	private DataSource coin;
 
 	private String userName;
 	private List < project > projectList;
@@ -54,16 +47,13 @@ public class projects {
 	}
 
 	public void delete(Integer id) {
-		Connection con;
-		con = null;
-		try {
-			con = coin.getConnection();
-			Tools.deleteProject(con, id);
-			init();
-		} catch(SQLException ex) {
-			Logger.getLogger(project.class.getName()).
-			    log(Level.SEVERE, null, ex);
-		}
+            Connection con;
+            HttpSession session = (HttpSession)
+                    FacesContext.getCurrentInstance().getExternalContext().
+                            getSession(true);
+            con = (Connection) session.getAttribute("con");
+            Tools.deleteProject(con, id);
+            init();
 	}
 
 	public String getUserName() {

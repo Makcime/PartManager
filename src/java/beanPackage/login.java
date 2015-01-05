@@ -28,7 +28,6 @@ public class login {
 	@Resource(name = "coin")
 	private DataSource coin;
 
-
 	private String pseudo, passwd;
 	private Integer userId;
 
@@ -55,7 +54,6 @@ public class login {
 	public String verifyLogin() {
 		Connection con;
 		Integer userId = 0;
-//            con = coin.getConnection();
 		HttpSession session = (HttpSession)
 		    FacesContext.getCurrentInstance().getExternalContext().
 		    getSession(true);
