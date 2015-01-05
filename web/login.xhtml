@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Sign Up</title>
+            </f:facet>
+        </h:head>
+    <body>
+        <h:form>
+        <p:growl autoUpdate="true"/>
+		<p:panel id="panel" header="Login">
+ 
+        <p:focus context="panel"/>
+ 
+        <h:panelGrid columns="2">
+            <p:outputLabel for="pseudo" value="Pseudo" />
+            <p:inputText id="pseudo" value="#{login.pseudo}" required="true">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+
+            <p:outputLabel for="passwd" value="Password" />
+        	<p:password id="passwd" value="#{login.passwd}" required="true" />
+
+        </h:panelGrid>
+ 
+        <p:commandButton id="submitButton" value="Login" ajax="true" update="@parent" action="#{login.verifyLogin}" resetValues="true" icon="ui-icon-power"/>
+        <p:button outcome="signup" value="Sign up   " icon="ui-icon-star" ></p:button>
+    </p:panel>
+           
+        </h:form>
+    </body>
+</html>

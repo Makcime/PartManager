@@ -4,30 +4,136 @@
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
     <navigation-rule>
-        <from-view-id>/index.jsp</from-view-id>
+        <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>login</from-outcome>
-            <to-view-id>/login.jsp</to-view-id>
+            <from-outcome>logout</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-outcome>test</from-outcome>
-            <to-view-id>/welcomeJSF.jsp</to-view-id>
+            <from-outcome>allParts</from-outcome>
+            <to-view-id>/allParts.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-outcome>db</from-outcome>
-            <to-view-id>/testToolsDB.jsp</to-view-id>
+            <from-outcome>newProject</from-outcome>
+            <to-view-id>/newProject.xhtml</to-view-id>
         </navigation-case>
-    </navigation-rule>
-    <navigation-rule>
-        <from-view-id>/login.jsp</from-view-id>
         <navigation-case>
-            <from-outcome>succes</from-outcome>
-            <to-view-id>/signIn.jsp</to-view-id>
+            <from-outcome>projects</from-outcome>
+            <to-view-id>/projects.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     <managed-bean>
-        <managed-bean-name>test</managed-bean-name>
-        <managed-bean-class>beanPackage.testToolsDB</managed-bean-class>
+        <managed-bean-name>signUp</managed-bean-name>
+        <managed-bean-class>beanPackage.signUp</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>login</managed-bean-name>
+        <managed-bean-class>beanPackage.login</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>allParts</managed-bean-name>
+        <managed-bean-class>beanPackage.allParts</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>part</managed-bean-name>
+        <managed-bean-class>beanPackage.part</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>editParts</managed-bean-name>
+        <managed-bean-class>beanPackage.editParts</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <from-view-id>/allParts.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>edit</from-outcome>
+            <to-view-id>/editParts.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>back</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/editParts.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>back</from-outcome>
+            <to-view-id>/allParts.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>cart</from-outcome>
+            <to-view-id>/updateCart.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <managed-bean>
+        <managed-bean-name>projects</managed-bean-name>
+        <managed-bean-class>beanPackage.projects</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>project</managed-bean-name>
+        <managed-bean-class>beanPackage.project</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <from-view-id>/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>signup</from-outcome>
+            <to-view-id>/signUp.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>idem</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/signUp.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/projects.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>edit</from-outcome>
+            <to-view-id>/projectManager.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <managed-bean>
+        <managed-bean-name>newProject</managed-bean-name>
+        <managed-bean-class>beanPackage.newProject</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
+    <navigation-rule>
+        <from-view-id>/newProject.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>back</from-outcome>
+            <to-view-id>/projects.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <managed-bean>
+        <managed-bean-name>projectManager</managed-bean-name>
+        <managed-bean-class>beanPackage.projectManager</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <from-view-id>/updateCart.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>back</from-outcome>
+            <to-view-id>/editParts.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

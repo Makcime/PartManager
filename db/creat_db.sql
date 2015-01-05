@@ -51,13 +51,31 @@ CREATE TABLE Project(
 	CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES User(id)
 );
 
+CREATE TABLE Bom(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	project_id INT,
+	part_id INT,
+	qty INT,
+	CONSTRAINT fk_project_id FOREIGN KEY (project_id) REFERENCES Project(id),
+	CONSTRAINT fk_part_id FOREIGN KEY (part_id) REFERENCES Part(id)
+);
+
 INSERT INTO User(name, first_name, login, passwd, cp)
 	VALUES	('Doe', 'John', 'admin', 'passwd', 1000),
 			('Dupont', 'Jean', 'jdupont', 'azerty', 6001);	
 
 INSERT INTO Supplier(name, url)
-	VALUES	('Farnell', 'http://be.farnell.com/'),
-			('RS', 'befr.rs-online.com/');	
+	VALUES	('Digikey', 'www.digikey.be/'),	
+			('Mouser', 'www.mouser.be/‎'),
+			('Farnell', 'http://be.farnell.com/'),
+			('RS', 'befr.rs-online.com/');		
+
+INSERT INTO Part(name, value, unit_price, in_stock, cat_id, sup_id, sup_ref)
+	VALUES	('C100n', '100nF', 0.3, 10, 1, 1, '21148'),
+			('C200n', '200nF', 0.3, 10, 1, 2, '21149'),
+			('C300n', '300nF', 0.3, 10, 1, 7, '211410'),
+			('C400n', '400nF', 0.3, 10, 1, 8, '211411')
+			;
 
 -- INSERT INTO Category(name)
 -- 	VALUES	();

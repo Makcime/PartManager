@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Project list</title>
+            </f:facet>
+        </h:head>
+    <body>
+        
+        <h:form >                
+            <p:commandButton id="back" value="Back" action="index" icon="ui-icon-arrowreturnthick-1-w" />
+		<p:panel id="panel" header="Projects of : #{projects.userName}">
+                    <p:dataTable var="project" value="#{projects.projectList}" resizableColumns="true"
+                                 lazy="true" rowsPerPageTemplate="10,15,50,100">
+                
+                <p:column headerText="Id" width="20">
+                    <h:outputText value="#{project.id}" style="float:right"/>
+			    </p:column>
+                        		 
+			    <p:column headerText="Name" width="150">
+                                <h:outputText value="#{project.name}" style="float:right"/>
+			    </p:column>
+			 
+			    <p:column headerText="Description">
+                                <h:outputText value="#{project.description}" style="float:enter"/>
+			    </p:column>
+			    <p:column width="130">
+				    <p:splitButton value="Edit" action="edit" icon="ui-icon-pencil">
+                                        <f:param name="projectId" value="#{project.id}" />
+				        <p:menuitem value="Delete" actionListener="#{projects.delete(project.id)}" ajax="false" icon="ui-icon-close" />
+				        <p:separator />
+				        <p:menuitem value="Homepage" action="index" icon="ui-icon-extlink" />
+				    </p:splitButton>
+			    </p:column>
+			 
+
+			</p:dataTable>
+	    </p:panel>
+
+    </h:form>
+
+    </body>
+</html>
