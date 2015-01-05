@@ -18,7 +18,7 @@ and open the template in the editor.
     <body>
         <h:form id="form">
             <p:growl id="msgs" showDetail="true" autoUpdate="true"/>
-        <p:button outcome="back" value="Back" icon="ui-icon-pencil"></p:button>
+        <p:commandButton id="backButton" value="Back" ajax="true" update="@parent" action="#{allParts.init()}" resetValues="true" icon="ui-icon-arrowreturnthick-1-w"/>
         <p:button outcome="cart" value="Cart" icon="ui-icon-pencil"></p:button>
 <p:panel id="panel" header="All components">
 

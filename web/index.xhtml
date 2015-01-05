@@ -16,17 +16,16 @@
 
     <body>
         <h:form>
-            <p:panel header="Welcome to Max's Part Manager application">
+        <p:growl autoUpdate="true"/>
+        <p:panel header="Welcome to Max's Part Manager application">
 		    <h:panelGrid columns="1" cellpadding="5">
             <p:button outcome="allParts" value="Show all components" icon="ui-icon-star">
         </p:button>
                                  
-            <p:button outcome="newProject" value="New Project" icon="ui-icon-star">
+            <p:button outcome="newProject" value="New Project" icon="ui-icon-circle-plus">
         </p:button>           
-                        
-            <p:button outcome="projects" value="All projects" icon="ui-icon-star" >
-        </p:button>
-                <p:commandButton id="submitButton" value="All projects" update="@parent" actionListener="#{projects.init()}" action="projects" icon="ui-icon-power" />
+
+                <p:commandButton id="submitButton" value="My projects" update="@parent" actionListener="#{projects.init()}" action="projects" icon="ui-icon-circle-triangle-e" />
                 <p:commandButton id="logout" value="Logout" action="#{login.logout()}" icon="ui-icon-power" />
 
 		    </h:panelGrid>

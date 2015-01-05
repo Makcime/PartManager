@@ -65,11 +65,17 @@ INSERT INTO User(name, first_name, login, passwd, cp)
 			('Dupont', 'Jean', 'jdupont', 'azerty', 6001);	
 
 INSERT INTO Supplier(name, url)
-	VALUES	('Farnell', 'http://be.farnell.com/'),
-			('RS', 'befr.rs-online.com/');	
+	VALUES	('Digikey', 'www.digikey.be/'),	
+			('Mouser', 'www.mouser.be/‎'),
+			('Farnell', 'http://be.farnell.com/'),
+			('RS', 'befr.rs-online.com/');		
 
 INSERT INTO Part(name, value, unit_price, in_stock, cat_id, sup_id, sup_ref)
-	VALUES	('R100k', '100k', 0.3, 10, 1, 1, '21144');
+	VALUES	('C100n', '100nF', 0.3, 10, 1, 1, '21148'),
+			('C200n', '200nF', 0.3, 10, 1, 2, '21149'),
+			('C300n', '300nF', 0.3, 10, 1, 7, '211410'),
+			('C400n', '400nF', 0.3, 10, 1, 8, '211411')
+			;
 
 -- INSERT INTO Category(name)
 -- 	VALUES	();

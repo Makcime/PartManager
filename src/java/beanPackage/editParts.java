@@ -44,7 +44,11 @@ public class editParts implements Serializable{
     }
 
     @PostConstruct
-    public  void init(){    
+    public void postConstuct(){
+        init();
+    }
+    
+    public String init(){    
             this.parts = new ArrayList<part>();
             session=(HttpSession)
                     FacesContext.getCurrentInstance().getExternalContext().getSession(true);
@@ -52,6 +56,7 @@ public class editParts implements Serializable{
             this.parts = Tools.listParts(con);
             categories = Tools.listNames(con, "Category");
             suppliers = Tools.listNames(con, "Supplier");
+           return "back";
     }
  	
  	public void onRowEdit(RowEditEvent event) {
@@ -96,6 +101,7 @@ public class editParts implements Serializable{
             msg = new FacesMessage("Update success", "");
         else
             msg = new FacesMessage("One or more lines of the update failed", "");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
 
         init();
         partsToUpdate = null;

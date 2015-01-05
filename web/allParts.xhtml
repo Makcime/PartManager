@@ -18,8 +18,8 @@ and open the template in the editor.
     <body>
         
     <h:form>			
-        <p:button outcome="edit" value="Edit" icon="ui-icon-pencil">
-        </p:button>
+        <p:commandButton id="backButton" value="Back" ajax="true" update="@parent" action="#{allParts.init()}" resetValues="true" icon="ui-icon-arrowreturnthick-1-w"/>
+        <p:commandButton id="editButton" value="Edit" ajax="true" update="@parent" actionListener="#{editParts.init()}" action="edit" resetValues="true" icon="ui-icon-pencil"/>
 		<p:panel id="panel" header="All components">
 
                     <p:dataTable var="part" value="#{allParts.parts}" resizableColumns="true"

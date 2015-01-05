@@ -36,7 +36,11 @@ public class allParts implements Serializable{
     public allParts() {}
    
     @PostConstruct
-    public  void init(){    
+    public void postConstuct(){
+        init();
+    }
+    
+    public  String init(){    
             Connection con = null;
             this.parts = new ArrayList<part>();
             HttpSession session=
@@ -44,6 +48,7 @@ public class allParts implements Serializable{
                     FacesContext.getCurrentInstance().getExternalContext().getSession(true);
             con=(Connection)session.getAttribute("con");
             this.parts = Tools.listParts(con);            
+           return "back";
     }
 
     public String test(){

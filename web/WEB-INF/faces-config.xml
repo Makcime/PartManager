@@ -53,6 +53,10 @@
             <from-outcome>edit</from-outcome>
             <to-view-id>/editParts.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>back</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
     <navigation-rule>
         <from-view-id>/editParts.xhtml</from-view-id>

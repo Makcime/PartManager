@@ -18,9 +18,9 @@ and open the template in the editor.
     <body>
         
     <h:form>	
-    <p:growl autoUpdate="true"/>
-        <p:button outcome="back" value="Back" icon="ui-icon-pencil"></p:button>
-    <p:commandButton id="submitButton" value="Save" ajax="true" update="@parent" actionListener="#{editParts.update()}" resetValues="true" icon="ui-icon-disk"/>
+    <p:growl id="msgs" showDetail="true" autoUpdate="true"/>
+        <p:commandButton id="backButton" value="Back" ajax="true" update="@parent" action="#{editParts.init()}" resetValues="true" icon="ui-icon-arrowreturnthick-1-w"/>
+    <p:commandButton id="saveButton" value="Save" ajax="true" update="@parent" actionListener="#{editParts.update()}" resetValues="true" icon="ui-icon-disk"/>
 
 		<p:panel id="panel" header="All components">
 
