@@ -60,6 +60,10 @@
             <from-outcome>back</from-outcome>
             <to-view-id>/allParts.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>cart</from-outcome>
+            <to-view-id>/updateCart.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
     <managed-bean>
         <managed-bean-name>projects</managed-bean-name>
@@ -121,4 +125,11 @@
         <managed-bean-class>beanPackage.projectManager</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
+    <navigation-rule>
+        <from-view-id>/updateCart.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>back</from-outcome>
+            <to-view-id>/editParts.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

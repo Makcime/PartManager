@@ -19,7 +19,8 @@ and open the template in the editor.
         <h:form id="form">
             <p:growl id="msgs" showDetail="true" autoUpdate="true"/>
         <p:button outcome="back" value="Back" icon="ui-icon-pencil"></p:button>
-    <p:panel id="panel" header="All components">
+        <p:button outcome="cart" value="Cart" icon="ui-icon-pencil"></p:button>
+<p:panel id="panel" header="All components">
 
         <p:dataTable id="parts" var="part" value="#{editParts.parts}" editable="true" style="margin-bottom:20px">
 <!--              <f:facet name="header">
